@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Product>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-3 col-sm-6">
+        <div class="single-arrivals-products">
+            <div class="arrivals-products-image">
+                <a href="products-details.html"><img src="/images/@(item.ProductId).jpg" alt="image"></a>
+                <div class="tag">جدید</div>
+                <ul class="arrivals-action">
+                    <li>
+                        <a href="cart.html">
+                            <i class="flaticon-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="wishlist.html"><i class="flaticon-heart"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView"><i class="flaticon-view"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="arrivals-products-content">
+                <h3>
+                    <a href="products-details.html">@item.Name</a>
+                </h3>
+                <ul class="rating">
+                    <li><i class='bx bxs-star'></i></li>
+                    <li><i class='bx bxs-star'></i></li>
+                    <li><i class='bx bxs-star'></i></li>
+                    <li><i class='bx bxs-star'></i></li>
+                    <li><i class='bx bxs-star'></i></li>
+                </ul>
+                <span>@item.Price</span>
+            </div>
+        </div>
+    </div>
+}

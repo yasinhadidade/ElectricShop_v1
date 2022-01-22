@@ -1,0 +1,8 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Category>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a href="#">@item.CategoryName</a>
+    </li>
+}

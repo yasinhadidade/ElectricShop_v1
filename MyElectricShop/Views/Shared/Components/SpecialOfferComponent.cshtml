@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Product>
+
+@if (Model != null)
+{
+    @foreach (var item in Model)
+    {
+<div class="col-lg-4 col-md-6">
+    <div class="single-offer-products">
+        <div class="offer-products-image">
+            <a href="/product/productsinglepage/@item.ProductId"><img src="/images/@(item.ProductId).jpg" alt="image"></a>
+            @*<div class="tag">٪@(item.Price)</div>*@
+        </div>
+
+        <div class="offer-products-content">
+            <h3>
+                <a href="products-details.html">@item.Name</a>
+            </h3>
+            <div class="price">
+                <span class="new-price">@item.Price</span>
+                <span class="old-price">@item.OldPrice</span>
+            </div>
+            <ul class="rating">
+                <li>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    }
+}
+<style>
+    .offer-products-image:hover {
+        transform: scale(1.1);
+    }
+</style>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DataAccessLayer.Models.OrderDetail>
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<div class="alert alert-primary"><h4>لیست بایگانی</h4></div>
+<br />
+<hr />
+<div class=" alert alert-warning"><a href="/Admin/soldproducts/regularSoldProducts">مشاهده لیست بر اساس دسته بندی</a></div>
+
+<table class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr>
+            <th scope="col">ردیف</th>
+            <th scope="col">محصول</th>
+            <th scope="col">نام کالا</th>
+            <th scope="col">قیمت واحد</th>
+            <th scope="col">تعداد کالا</th>
+            <th scope="col">مجموع</th>
+            <th scope="col">تاریخ اضافه شدن ریز فاکتور به بایگانی</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr id="orderdetail">
+            <td class="">
+                <a href="products-details.html">@item.DetailId</a>
+            </td>
+            <td class="product-thumbnail">
+                <a><i class='bx bx-x'></i></a>
+
+                <a href="#">
+                    <img src="/images/@(item.product.ProductId).jpg" alt="item" style="max-width:120px">
+                </a>
+            </td>
+
+
+            <td class="product-name">
+                <a href="products-details.html">@item.product.Name</a>
+            </td>
+
+            <td class="product-price">
+                <span class="unit-amount">@item.Price</span>
+            </td>
+
+            <td class="product-quantity">
+                <div class="input-counter">
+                    @*<span class="minus-btn"><i class='bx bx-minus'></i></span>*@
+                    <span class="unit-amount">@item.Count</span>
+                    @*<span class="plus-btn"><i class='bx bx-plus'></i></span>*@
+                </div>
+            </td>
+
+
+            <td class="product-subtotal">
+                <span class="subtotal-amount">@(item.Count*item.Price)</span>
+            </td>
+            <td class="">
+                <span class="">@item.CreateDate</span>
+            </td>
+        </tr>
+
+        }
+
+    </tbody>
+
+</table>
+

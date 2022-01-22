@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataAccessLayer.Models.OrderDetail>
+
+@if (Model != null)
+{
+    <h4>ریز فاکتور مشتری : @ViewBag.name</h4>
+    <table class="table table-bordered" style="text-align:center">
+        <thead>
+            <tr>
+                <th scope="col">محصول</th>
+                <th scope="col">نام کالا</th>
+                <th scope="col">قیمت واحد</th>
+                <th scope="col">تعداد کالا</th>
+                <th scope="col">مجموع</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="orderdetail">
+                    <td class="product-thumbnail">
+                        <a><i class='bx bx-x'></i></a>
+
+                        <a href="#">
+                            <img src="/images/@(item.product.ProductId).jpg" alt="item" style="max-width:120px">
+                        </a>
+                    </td>
+
+
+                    <td class="product-name">
+                        <a href="products-details.html">@item.product.Name</a>
+                    </td>
+
+                    <td class="product-price">
+                        <span class="unit-amount">@item.Price</span>
+                    </td>
+
+                    <td class="product-quantity">
+                        <div class="input-counter">
+                            @*<span class="minus-btn"><i class='bx bx-minus'></i></span>*@
+                            <span class="unit-amount">@item.Count</span>
+                            @*<span class="plus-btn"><i class='bx bx-plus'></i></span>*@
+                        </div>
+                    </td>
+
+
+                    <td class="product-subtotal">
+                        <span class="subtotal-amount">@(item.Count*item.Price)</span>
+                    </td>
+                    <td><button id="closee" class="btn btn-danger" onclick="closeorderdetail(@item.DetailId)">در صورت ارسال موفقیت آمیز محصول،لطفا ریز فاکتور را ببندید</button></td>
+                </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+    <div class="alert alert-success"> جمع کل خرید :@Model.Sum(i => i.Count * i.Price) تومان</div>
+    @*<div class="alert alert-success"> جمع کل خرید :<p id="sum">@ViewBag.sum</p> تومان</div>*@
+
+
+}
+else
+{
+    <div class="alert-danger "> ریز فاکتوری یافت نشد</div>
+}
+

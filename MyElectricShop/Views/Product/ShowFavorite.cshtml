@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "ShowFavorite";
+}
+
+<!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>لیست علاقه مندیها</h2>
+
+            <ul>
+                <li><a href="index.html">صفحه اصلی</a></li>
+                <li>لیست علاقه مندیها</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+<!-- Start Wishlist Area -->
+<section class="wishlist-area ptb-50">
+    <div class="container">
+        <div class="wishlist-table table-responsive">
+            <div class="wishlist-title">
+                <h2>علاقه مندیهای من</h2>
+            </div>
+
+            <table class="table table-bordered">
+               
+                <tbody>
+                    @foreach (var item in ViewData["likedpro"] as IEnumerable<DataAccessLayer.Models.Product>)
+                    {
+                        <tr>
+                            <td class="product-remove">
+                                <a href="/product/RemoveFavorite/@item.ProductId" class="remove">
+                                    <i class='bx bx-x'></i>
+                                </a>
+                            </td>
+
+                            <td class="product-thumbnail">
+                                <a href="/product/productsinglepage/@item.ProductId">
+                                    <img src="/images/@(item.ProductId).jpg" alt="item">
+                                </a>
+                            </td>
+
+                            <td class="product-name">
+                                <a href="products-details.html">@item.Name</a>
+                            </td>
+
+                            <td class="product-price">
+                                <span class="unit-amount">@item.Price</span>
+                            </td>
+
+                            <td class="product-stock">
+                                @if (item.IsExist == true)
+                                {
+                                <span class="stock">موجود در انبار</span>
+                                }
+                                else
+                                {
+                                    <span class="stock">موجود نیست</span>
+
+                                }
+                            </td>
+
+                            <td class="product-btn">
+                                <a href="/product/productsinglepage/@item.ProductId" class="default-btn">
+                                    @*<i class="flaticon-shopping-cart"></i>*@
+                                    جزئیات محصول
+                                    <span></span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- End Wishlist Area -->

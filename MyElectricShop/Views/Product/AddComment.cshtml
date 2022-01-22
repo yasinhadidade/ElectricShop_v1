@@ -1,0 +1,25 @@
+﻿
+@if (ViewData["cms"] != null)
+{
+    @foreach (var item in ViewData["cms"] as IEnumerable<DataAccessLayer.Models.Comment>)
+    {
+        <div class="review-item">
+            <div class="rating">
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+                <i class='bx bxs-star'></i>
+            </div>
+            <h3>@item.Name</h3>
+            <span><strong>کاربر</strong> در <strong>@DateTime.Now</strong></span>
+            <p>@item.CommentText</p>
+        </div>
+    }
+}
+else if (ViewData["cms"] == null)
+{
+    <p>Show COmmenttt</p>
+
+}
+

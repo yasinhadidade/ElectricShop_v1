@@ -1,0 +1,16 @@
+﻿@model DataAccessLayer.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "SuccessfullRegister";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="alert alert-success col-md-4">
+        کاربر گرامی با ایمیل @Model.Email ثبت نام شما با موفقیت انجام شد
+        <hr />
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">ورود به سایت</a>
+
+    </div>
+</div>
+
+

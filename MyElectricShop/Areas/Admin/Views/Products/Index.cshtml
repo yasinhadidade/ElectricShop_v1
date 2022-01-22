@@ -1,0 +1,99 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Product>
+@using MyElectricShop.Classes
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="alert alert-primary"><h4>مدیریت محصولات سایت</h4></div>
+<br />
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">اضافه کردن محصول جدید</a>
+</p>
+<table class="table" style="text-align:center">
+    <thead class="table table-primary">
+        <tr>
+            <th>
+                ردیف
+            </th>
+            <th>
+                تصویر محصول
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsExist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSpecial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowInSlider)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNumberOfSales)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                <img src="/images/@(item.ProductId).jpg" style="max-width:120PX" class="img-thumbnail" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsExist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSpecial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInSlider)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalNumberOfSales)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

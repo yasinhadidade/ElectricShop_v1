@@ -1,0 +1,85 @@
+﻿@model IEnumerable<DataAccessLayer.Models.User>
+
+    <br />
+    <br />
+    <div class="alert alert-primary"><h4>مدیریت سفارشات جدید</h4></div>
+    <br />
+    <hr />
+    <table class="table">
+        <thead class="">
+            <tr>
+                <th>نام و نام خانوادگی</th>
+                <th>شماره همراه</th>
+                <th>ایمیل</th>
+                <th>آدرس ارسال محصول</th>
+                <th>تاریخ ثبت سفارش</th>
+                <th>مشاهده سفارش</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Fulllname</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                    <td>@item.Address</td>
+                    <td>@item.order.CreateDate</td>
+                    <td>
+                        <button class="btn btn-primary" id="ShowOrder" onclick="ShowOrder(@item.UserId)">مشاهده سفارش</button>
+                    </td>
+                    <td><button class="btn btn-primary" onclick="openorder(@item.UserId)">در صورت تکمیل اماده سازی سفارش، کلیک کنید</button></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <hr style="color:deeppink" />
+    <hr style="color:deeppink" />
+
+
+    <div id="or">
+
+    </div>
+
+
+
+
+    @section scripts{
+
+        <script>
+
+            function ShowOrder(pid) {
+                $.ajax({
+                    url: "/Admin/finallyOrders/ShowOrderOfUser",
+                    data: { id: pid }
+
+                }).done(function (re) { $("#or").html(re); })
+            }
+
+            function openorder(id) {
+                $.ajax({
+                    url: "/Admin/finallyorders/OpenOrder",
+                    data: { userid: id }
+
+                }).done(function (re) { alert(re); location.reload(true) })
+            }
+
+
+            function closeorderdetail(id) {
+                $.ajax({
+                    url: "/Admin/finallyorders/finishorderdetail",
+                    data: { detailid: id }
+
+                }).done(function (re) { alert(re) })
+            };
+
+
+        </script>
+    }

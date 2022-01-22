@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Content>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<div class="alert alert-primary"><h4>مدیریت محتوای سایت</h4></div>
+<br />
+<hr />
+<p>
+    <a asp-action="Create" class="btn btn-success">ایجاد محتوای جدید</a>
+</p>
+<table class="table">
+    <thead class="table table-primary" style="text-align:center">
+        <tr>
+            <th>
+                شماره ردیف
+            </th>
+            <th>
+                تصویر
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.visit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tags)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @item.Contentid
+            </td>
+            <td>
+                <img src="/ContentImage/@(item.Contentid).jpg" class="thumbnail" style="max-width:120px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.visit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tags)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Contentid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Contentid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Contentid">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

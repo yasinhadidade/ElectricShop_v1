@@ -1,0 +1,87 @@
+﻿@model DataAccessLayer.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "ثبت نام";
+}
+
+<!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>ثبت نام</h2>
+
+            <ul>
+                <li><a href="index.html">صفحه اصلی</a></li>
+                <li>ثبت نام</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+
+<hr />
+
+
+
+<!--/////********///////******-->
+<!-- Start Register Area -->
+<section class="register-area ptb-50">
+    <div class="container">
+        <div class="register-form">
+            <h2>ثبت نام</h2>
+
+            <form asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    @*<label asp-for="Email" class="control-label"></label>*@
+                    <input asp-for="FullName" class="form-control" placeholder=" نام و نام خانوادگی" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Email" class="control-label"></label>*@
+                    <input asp-for="Email" class="form-control" placeholder=" ایمیل" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Email" class="control-label"></label>*@
+                    <input asp-for="Address" class="form-control" placeholder="آدرس  محل سکونت" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Email" class="control-label"></label>*@
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="شماره همراه" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Password" class="control-label"></label>*@
+                    <input asp-for="Password" class="form-control" placeholder="گذر واژه" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<label asp-for="Repassword" class="control-label"></label>*@
+                    <input asp-for="Repassword" class="form-control" placeholder="تکرار گذراژه" />
+                    <span asp-validation-for="Repassword" class="text-danger"></span>
+                </div>
+                <hr />
+                <br />
+
+
+                <div class="form-group">
+                    @*<input type="submit" value="ثبت نام" class="btn btn-primary" />*@
+                    <button type="submit">ثبت نام</button>
+
+                </div>
+            </form>
+
+            <div class="important-text">
+                <p>حساب کاربری دارید؟ <a href="/account/login">وارد شوید!</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Register Area -->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

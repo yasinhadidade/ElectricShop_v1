@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Content>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-6">
+        <div class="single-blog">
+            <div class="blog-image">
+                <a asp-controller="content" asp-action="ContentSinglePage" asp-route-contentid="@item.Contentid"><img src="/ContentImage/@(item.Contentid).jpg" alt="image"></a>
+            </div>
+
+            <div class="blog-content">
+                <a asp-controller="content" asp-action="ContentSinglePage" asp-route-contentid="@item.Contentid"><span>@item.Title</span></a>
+                <h3>
+                    <a asp-controller="content" asp-action="ContentSinglePage" asp-route-contentid="@item.Contentid">@item.ShortDescription</a>
+                </h3>
+                <div class="post-meta">
+                    <a href="#">مدیر</a> / @item.CreateDate
+                </div>
+            </div>
+        </div>
+    </div>
+}

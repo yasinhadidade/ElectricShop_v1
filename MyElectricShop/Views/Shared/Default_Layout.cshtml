@@ -1,0 +1,588 @@
+﻿<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="HTML5,CSS3,HTML,Template,multi-page,Ejon - Electronics eCommerce HTML Template">
+    <meta name="description" content="Ejon - Electronics eCommerce HTML Template">
+    <meta name="author" content="Barat Hadian">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css">
+
+    <link rel="stylesheet" href="/assets/css/animate.min.css">
+
+    <link rel="stylesheet" href="/assets/css/meanmenu.css">
+
+    <link rel="stylesheet" href="/assets/css/boxicons.min.css">
+
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css">
+
+    <link rel="stylesheet" href="/assets/css/nice-select.min.css">
+
+    <link rel="stylesheet" href="/assets/css/slick.min.css">
+
+    <link rel="stylesheet" href="/assets/css/odometer.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="stylesheet" href="/assets/css/responsive.css">
+
+    <link rel="stylesheet" href="/assets/css/rtl.css">
+
+    <title>Ejon - قالب HTML اجون , پوسته سایت فروشگاهی کالا و لوازم الکترونیکی</title>
+
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+</head>
+
+<body>
+
+    <!-- Start Preloader Area -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="sbl-half-circle-spin">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!-- End Preloader Area -->
+    <!-- Start Top Header Area -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="top-header-content">
+                       
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <ul class="top-header-optional">
+                        <li>
+                            @*<div class="languages-list">
+                                    <select>
+                                        <option value="1">فارسی</option>
+                                        <option value="2">العربيّة</option>
+                                        <option value="3">Deutsch</option>
+                                        <option value="3">Português</option>
+                                        <option value="3">简体中文</option>
+                                    </select>
+                                </div>*@
+                        </li>
+
+                        <li>
+                            @*<i class='bx bxs-lock-alt'></i>*@
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+
+                                @if (ViewBag.isadmin == "False")
+                                {
+                                    <span>به فروشگاه خوش آمدید</span>
+                                    <br />
+                                    <span><a href="/account/logout">خروج از حساب کاربری</a></span>
+                                    <br />
+                                    <span><a href="/account/editprofile">پروفایل شخصی</a></span>
+                                }
+                                else if (ViewBag.isadmin == "True")
+                                {
+                                    <span>به فروشگاه خوش آمدید</span>
+                                    <br />
+                                    <span><a href="/account/logout">خروج از حساب کاربری</a></span>
+                                    <br />
+                                    <span><a href="/admin/products/index">ورود به پنل مدیریت</a></span>
+
+                                }
+
+                            }
+                            else
+                            {
+                                <span><a href="/account/login">ورود</a> یا <a href="/account/register">ثبت نام</a></span>
+
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Header Area -->
+    <!-- Start Middle Header Area -->
+    <div class="middle-header-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="middle-header-logo">
+                        <a href="/">
+                            <img src="/images/new.png"  alt="image">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="middle-header-search">
+                        <form asp-controller="Product" asp-action="Search" method="post">
+                            <div class="row align-items-center">
+                                @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <select>
+                                            <option>دسته بندی ها</option>
+                                            <option value="1">کامپیوتر</option>
+                                            <option value="2">صوتی</option>
+                                            <option value="2">سینمای خانگی</option>
+                                            <option value="3">لپ تاپ</option>
+                                            <option value="3">تلویزیون</option>
+                                            <option value="3">موبایل</option>
+                                            <option value="3">تبلت</option>
+                                            <option value="3">هدفون</option>
+                                            <option value="3">گوشی</option>
+                                            <option value="3">باتری</option>
+                                            <option value="3">ساعت مچی</option>
+                                            <option value="3">دوربین</option>
+                                            <option value="3">تجهیزات جانبی</option>
+                                        </select>
+                                    </div>
+                                </div>*@
+                                <div class="col-md-12">
+                                    <div class="search-box">
+                                        <input type="text" class="form-control" name="search" placeholder="جستجوی کالا ...">
+                                        <button type="submit"><i class='bx bx-search'></i></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <ul class="middle-header-optional">
+                        @*<li><a href="/product/ShowFavorite"><i class="flaticon-heart"></i></a></li>*@
+                        <li><a>مشاهده سبد خرید</a></li>
+                        <li>
+                            <a href="/product/showcart">
+                                <i class="flaticon-shopping-cart"></i>
+                                @if (User.Identity.IsAuthenticated && ViewBag.c != null)
+                                {
+                                    <span>
+                                        @ViewBag.c
+                                    </span>
+
+                                }
+                                else if (User.Identity.IsAuthenticated && ViewBag.c == null)
+                                {
+                                    <span>
+                                        0
+                                    </span>
+                                }
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Middle Header Area -->
+    <!-- Start Navbar Area -->
+    <div class="navbar-area">
+        <div class="main-responsive-nav">
+            <div class="container">
+                <div class="main-responsive-menu">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="/assets/img/logo-2.png" alt="logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-navbar">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <div class="navbar-category">
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="bx bx-menu"></i>
+                                        دسته بندی ها
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @await Component.InvokeAsync("CategoriesComponent")
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse mean-menu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">
+                                    صفحه اصلی
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item megamenu">
+                                <a href="/product/ShowAllProducts" class="nav-link">
+                                    فروشگاه
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/content/showallcontents" class="nav-link">
+                                    مقالات
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    خدمات و مشاوره
+                                </a>
+
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="contact.html" class="nav-link">تماس با ما</a>
+                            </li>
+                        </ul>
+
+                        <div class="others-option d-flex align-items-center">
+                            <div class="option-item">
+                                <span>
+                                    تلفن:
+                                    <a href="tel:16545676789">12345678-021</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="others-option-for-responsive">
+            <div class="container">
+                <div class="dot-menu">
+                    <div class="inner">
+                        <div class="circle circle-one"></div>
+                        <div class="circle circle-two"></div>
+                        <div class="circle circle-three"></div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="option-inner">
+                        <div class="others-option d-flex align-items-center">
+                            <div class="option-item">
+                                <span>
+                                    تلفن:
+                                    <a href="tel:16545676789">12345678-021</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar Area -->
+
+
+
+
+
+
+    @RenderBody()
+
+
+
+
+
+
+
+
+    <!-- Start Footer Area -->
+    <section class="footer-area pt-50 pb-20">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h2>تماس بگیرید</h2>
+
+                        <ul class="footer-contact-info">
+                            <li>
+                                <span>آدرس:</span>
+                                <a href="#" target="_blank">ایران ، استان تهران ، میدان آزادی ، خیابان 9 شرقی</a>
+                            </li>
+                            <li>
+                                <span>تلفن:</span>
+                                <a href="tel:+15143214567">12345678-021</a>
+                            </li>
+                            <li>
+                                <span>ایمیل:</span>
+                                <a href="mailto:hello@ejon.com">hello@ejon.com</a>
+                            </li>
+                        </ul>
+                        <ul class="footer-social">
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-facebook'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-instagram'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-pinterest-alt'></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class='bx bxl-twitter'></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h2>خط مشی</h2>
+
+                        <ul class="quick-links">
+                            <li>
+                                <a href="#">حمل و نقل و تحویل</a>
+                            </li>
+                            <li>
+                                <a href="#">روش پرداخت</a>
+                            </li>
+                            <li>
+                                <a href="#">نحوه خرید</a>
+                            </li>
+                            <li>
+                                <a href="#">شرایط و ضوابط</a>
+                            </li>
+                            <li>
+                                <a href="#">حریم خصوصی</a>
+                            </li>
+                            <li>
+                                <a href="#">بازگشت وجه</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h2>پشتیبانی</h2>
+
+                        <ul class="quick-links">
+                            <li>
+                                <a href="#">حساب کاربری</a>
+                            </li>
+                            <li>
+                                <a href="#">پیگیری سفارش</a>
+                            </li>
+                            <li>
+                                <a href="#">تماس با ما</a>
+                            </li>
+                            <li>
+                                <a href="#">خدمات مشتری</a>
+                            </li>
+                            <li>
+                                <a href="#">سوالات متداول</a>
+                            </li>
+                            <li>
+                                <a href="#">میز خدمت</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h2>به خبرنامه ما بپیوندید</h2>
+
+                        <div class="newsletter-item">
+                            <div class="newsletter-content">
+                                <p>برای آخرین به روزرسانی ها در خبرنامه مشترک شوید</p>
+                            </div>
+
+                            <form class="newsletter-form" data-toggle="validator">
+                                <input type="email" class="input-newsletter" placeholder="آدرس ایمیل" name="EMAIL" required autocomplete="off">
+
+                                <button type="submit">مشترک شدن</button>
+                                <div id="validator-newsletter" class="form-result"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Footer Area -->
+    <!-- Start Copy Right Area -->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="copyright-area-content">
+                <p>کپی رایت © 1399. تمام حقوق قالب محفوظ است. طراحی توسط <a href="https://www.rtl-theme.com/author/barat/?aff=barat" target="_blank" rel="nofollow">Barat Hadian</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- End Copy Right Area -->
+    <!-- Start Go Top Area -->
+    <div class="go-top">
+        <i class='bx bx-up-arrow-alt'></i>
+    </div>
+    <!-- End Go Top Area -->
+
+    <div class="modal fade productsQuickView" id="productsQuickView" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class='bx bx-x'></i></span>
+                </button>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="products-details-image">
+                            <ul class="products-details-image-slides">
+                                <li><img src="/assets/img/quick-view/quick-view-1.jpg" alt="image"></li>
+                                @*<li><img src="/assets/img/quick-view/quick-view-2.jpg" alt="image"></li>
+        <li><img src="/assets/img/quick-view/quick-view-3.jpg" alt="image"></li>*@
+                            </ul>
+                            @*<div class="slick-thumbs">
+                    <ul>
+                        <li><img src="/assets/img/quick-view/quick-view-1.jpg" alt="image"></li>
+                        <li><img src="/assets/img/quick-view/quick-view-2.jpg" alt="image"></li>
+                        <li><img src="/assets/img/quick-view/quick-view-3.jpg" alt="image"></li>
+                    </ul>
+                </div>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-content">
+                            <h3>نام محصول</h3>
+
+
+
+                            <div class="price">
+                                <span class="old-price">قیمت دلخواه</span>
+                                <span class="new-price">75000 تومان</span>
+                            </div>
+                            <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+
+                            <ul class="products-info">
+                                <li><span>موجودی:</span> <a href="#">در انبار</a></li>
+                                <li><span>تعداد:</span> <a href="#">L458-25</a></li>
+                            </ul>
+
+                            <div class="products-color-switch">
+                                <p class="available-color">
+                                    <span>رنگ</span> :
+                                    <a href="#" style="background: #a53c43;"></a>
+                                    <a href="#" style="background: #192861;"></a>
+                                    <a href="#" style="background: #c58a84;"></a>
+                                    <a href="#" style="background: #ecc305;"></a>
+                                    <a href="#" style="background: #000000;"></a>
+                                    <a href="#" style="background: #808080;"></a>
+                                </p>
+                            </div>
+
+                            <div class="product-quantities">
+                                <span>مقادیر:</span>
+
+                                <div class="input-counter">
+                                    <span class="minus-btn">
+                                        <i class='bx bx-minus'></i>
+                                    </span>
+                                    <input type="text" value="1">
+                                    <span class="plus-btn">
+                                        <i class='bx bx-plus'></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="product-add-to-cart">
+                                <button type="submit" class="default-btn">
+                                    <i class="flaticon-shopping-cart"></i>
+                                    افزودن سبد خرید
+                                    <span></span>
+                                </button>
+                            </div>
+
+                            <div class="products-share">
+                                <ul class="social">
+                                    <li><span>اشتراک گذاری:</span></li>
+                                    <li>
+                                        <a href="#" target="_blank"><i class='bx bxl-facebook'></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank"><i class='bx bxl-instagram'></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End QuickView Modal Area -->
+    <!-- Jquery Slim JS -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="/assets/js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Meanmenu JS -->
+    <script src="/assets/js/jquery.meanmenu.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="/assets/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JS -->
+    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Nice Select JS -->
+    <script src="/assets/js/jquery.nice-select.min.js"></script>
+    <!-- Slick JS -->
+    <script src="/assets/js/slick.min.js"></script>
+    <!-- Odometer JS -->
+    <script src="/assets/js/odometer.min.js"></script>
+    <!-- Appear JS -->
+    <script src="/assets/js/jquery.appear.js"></script>
+    <!-- Jquery Ui JS -->
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <!-- Ajaxchimp JS -->
+    <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- Form Validator JS -->
+    <script src="/assets/js/form-validator.min.js"></script>
+    <!-- Contact JS -->
+    <script src="/assets/js/contact-form-script.js"></script>
+    <!-- Wow JS -->
+    <script src="/assets/js/wow.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/assets/js/main.js"></script>
+    <script>
+
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

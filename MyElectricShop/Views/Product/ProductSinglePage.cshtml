@@ -1,0 +1,412 @@
+﻿@model DataAccessLayer.Models.Product
+    <!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>جزئیات فروشگاه</h2>
+
+            <ul>
+                <li><a href="index.html">صفحه اصلی</a></li>
+                <li>جزئیات فروشگاه</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+<!-- Start Products Details Area -->
+<section class="products-details-area ptb-50">
+    <div class="container">
+        <div class="products-details-desc">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <div class="main-products-image">
+
+                        <div class="slider slider-for">
+                            <div><img src="/images/@(Model.ProductId).jpg" alt="image"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-content content-two">
+                        <h3>@Model.Name</h3>
+
+                        <div class="product-review">
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+
+                        <div class="price">
+                            @if (Model.OldPrice != 0)
+                            {
+                                <span class="old-price">@Model.OldPrice </span>
+
+                            }
+                            <span class="new-price">@Model.Price تومان</span>
+                        </div>
+                        @*<p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>*@
+
+                        <ul class="products-info">
+                            <li>
+                                <span>موجود:</span>
+                                @if (Model.IsExist == true)
+                                {<b>در انبار</b>}
+                                else
+                                { <b>نیست</b>}
+                            </li>
+                            <li>
+                                <span>@Model.Comment.Count() دیدگاه کاربران</span>
+                            </li>
+                        </ul>
+
+                        @*<div class="products-color-switch">
+                            <p class="available-color">
+                                <span>رنگ</span> :
+                                <a href="#" style="background: #a53c43;"></a>
+                                <a href="#" style="background: #192861;"></a>
+                                <a href="#" style="background: #c58a84;"></a>
+                                <a href="#" style="background: #ecc305;"></a>
+                                <a href="#" style="background: #000000;"></a>
+                                <a href="#" style="background: #808080;"></a>
+                            </p>
+                        </div>*@
+
+                        <div class="product-quantities">
+                            <span>تعداد:</span>
+
+                            <div class="input-counter">
+                                <span class="minus-btn">
+                                    <i class='bx bx-minus'></i>
+                                </span>
+                                <input type="text" value="1" id="count">
+
+
+                                <span class="plus-btn">
+                                    <i class='bx bx-plus'></i>
+                                </span>
+                            </div>
+                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (Model.IsExist == true)
+                            {
+                                <div class="product-add-to-cart">
+                                    <a onclick="addtocart()" class="default-btn">
+                                        <i class="flaticon-shopping-cart"></i>
+                                        افزودن سبد خرید
+                                        <span></span>
+                                    </a>
+                                    <input type="hidden" id="proid" value="@Model.ProductId" />
+
+                                </div>
+                            }
+                            else
+                            {
+                                <br />
+                                <div class="alert-danger">
+                                    <h6>کابر گرامی، در صورت موجود شدن محصول ،اطلاع رسانی خواهیم کرد. با تشکر از صبر شما</h6>
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
+
+
+                            <div class="alert alert-info">
+                                <h6>برای افزودن محصول به سبد خرید ابتدا باید از طریق لینک زیر وارد پنل کاربری خود شوید</h6>
+                                <h6 style="color:darkred">
+                                    <a class="link-primary" href="/account/login">ورود به پنل کاربری</a>
+                                </h6>
+                            </div>
+                        }
+
+
+                        <div class="products-share">
+                            <ul class="social">
+                                <li><span>اشتراک گذاری:</span></li>
+                                <li>
+                                    <a href="#" target="_blank"><i class='bx bxl-facebook'></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class='bx bxl-twitter'></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank"><i class='bx bxl-instagram'></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products-details-tabs">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item"><a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description">شرح محصول</a></li>
+                <li class="nav-item"><a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">بازدیدها</a></li>
+                <li class="nav-item"><a class="nav-link" id="information-tab" data-bs-toggle="tab" href="#information" role="tab" aria-controls="information">اطلاعات کالا</a></li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                    <h2>مرور کلی</h2>
+
+                    <p>@Model.Description</p>
+
+                </div>
+
+                <div class="tab-pane fade" id="reviews" role="tabpanel">
+                    <div class="products-reviews">
+                        @*<h3>نظرات</h3>
+
+                        <div class="row">
+                            <div class="side">
+                                <div>5 ستاره</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-5"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div>70%</div>
+                            </div>
+                            <div class="side">
+                                <div>4 ستاره</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-4"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div>20%</div>
+                            </div>
+                            <div class="side">
+                                <div>3 ستاره</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-3"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div>5%</div>
+                            </div>
+                            <div class="side">
+                                <div>2 ستاره</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-2"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div>3%</div>
+                            </div>
+                            <div class="side">
+                                <div>1 ستاره</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-1"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div>2%</div>
+                            </div>
+                        </div>*@
+                    </div>
+
+                    <div class="products-review-form">
+                        <h3>نظرات مشتریان</h3>
+
+                        <div class="review-title">
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+
+                            <a href="#" class="default-btn">
+                                نظر بنویسید
+                                <span></span>
+                            </a>
+                        </div>
+
+                        <div class="review-comments" id="coment">
+                            @*@Html.ActionLink("addcomment","product")*@
+                            <partial name="AddComment" />
+                            @*@foreach (var item in ViewData["cms"] as IEnumerable<DataAccessLayer.Models.Comment>)
+                                {
+                                    <div class="review-item">
+                                        <div class="rating">
+                                            <i class='bx bxs-star'></i>
+                                            <i class='bx bxs-star'></i>
+                                            <i class='bx bxs-star'></i>
+                                            <i class='bx bxs-star'></i>
+                                            <i class='bx bxs-star'></i>
+                                        </div>
+                                        <h3>@item.Name</h3>
+                                        <span><strong>مدیررر</strong> در <strong>21 دی 1398</strong></span>
+                                        <p>@item.CommentText</p>
+                                    </div>
+                                }*@
+
+
+                        </div>
+
+                        <div class="review-form">
+                            <h3>نظر بدهید</h3>
+
+                            <form>
+                                <div class="row">
+                                    <input type="hidden" id="productid" value="@Model.ProductId" />
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" id="name" name="name" placeholder="نام شما" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" id="email" name="email" placeholder="آدرس ایمیل شما" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <textarea name="review-body" id="review-body" cols="30" rows="6" placeholder="نظر خود را بنویسید" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <a class="default-btn" onclick="addcomment()">
+                                            ارسال نظر
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade show" id="information" role="tabpanel">
+                    <ul class="information-list">
+                        <li>آدرس: <span> ایران ، استان تهران ، میدان آزادی ، خیابان 9 شرقی</span></li>
+                        <li>تلفن: <a href="tel:+15143214567">021-12345678</a></li>
+                        <li>ایمیل: <a href="mailto:hello@ejon.com">hello@ejon.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Products Details Area -->
+<!-- Start Arrivals Products Area -->
+<section class="arrivals-products-area pt-50 pb-20">
+    <div class="container">
+        <div class="section-title">
+            <h2>محصولات مرتبط</h2>
+        </div>
+
+        <div class="row">
+            @foreach (var item in ViewData["relatedproducts"] as IEnumerable<DataAccessLayer.Models.Product>)
+            {
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-arrivals-products">
+                        <div class="arrivals-products-image">
+                            <a href="/product/productsinglepage/@item.ProductId"><img src="/images/@(item.ProductId).jpg" alt="image"></a>
+                            <div class="tag">جدید</div>
+                            <ul class="arrivals-action">
+                                <li>
+                                    <a href="cart.html">
+                                        <i class="flaticon-shopping-cart"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html">
+                                        <i class="flaticon-heart"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#productsQuickView">
+                                        <i class="flaticon-view"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="arrivals-products-content">
+                            <h3>
+                                <a href="/product/productsinglepage/@item.ProductId">@item.Name</a>
+                            </h3>
+                            <ul class="rating">
+                                <li><i class='bx bxs-star'></i></li>
+                                <li><i class='bx bxs-star'></i></li>
+                                <li><i class='bx bxs-star'></i></li>
+                                <li><i class='bx bxs-star'></i></li>
+                                <li><i class='bx bxs-star'></i></li>
+                            </ul>
+                            <span>@item.Price تومان</span>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- End Arrivals Products Area -->
+
+@section scripts
+{
+    <script>
+
+        function addtocart() {
+            $.ajax({
+                url: "/product/AddToCart",
+                data: {
+                    productid: $("#proid").val(),
+                    count: $("#count").val()
+                },
+                type: 'Get',
+                success: function () { window.location.href = '/product/showcart' }
+
+            })
+        }
+
+        function addcomment() {
+            $.ajax({
+                url: "/product/AddComment",
+                type: 'Get',
+                data: {
+                    productid: $("#productid").val(),
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    text: $("#review-body").val()
+                },
+                success: function (re) { $("#name").val(""); $("#email").val(""); $("#review-body").val(""); $("#coment").html(re) }
+            })
+        }
+
+
+
+    </script>
+
+
+}
+
+
+@*window.location.href = '/product/ProductSinglePage/@Model.ProductId'*@

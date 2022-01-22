@@ -1,0 +1,200 @@
+﻿@model DataAccessLayer.Models.Order
+@{
+//ViewData["Title"] = "ShowCart";
+}
+
+<!-- Start Page Banner -->
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>سبد خرید</h2>
+
+            <ul>
+                <li><a href="index.html">صفحه اصلی</a></li>
+                <li>سبد خرید</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Banner -->
+<!-- Start Cart Area -->
+<section class="cart-area ptb-50">
+    <div class="container">
+        <div class="row">
+            @if (Model != null && Model.IsFinally == false)
+            {
+
+
+                <div class="col-lg-9 col-md-12">
+                    <form>
+                        <div class="cart-table table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col">محصول</th>
+                                        <th scope="col">نام کالا</th>
+                                        <th scope="col">قیمت واحد</th>
+                                        <th scope="col">تعداد کالا</th>
+                                        <th scope="col">مجموع</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model.orderDetails.Where(i => i.Isfinally == false).Count() == 0)
+                                    {
+                                        <tr><td>سبد خرید شما خالی است</td></tr>
+                                    }
+                                    @foreach (var item in Model.orderDetails.Where(i => i.Isfinally == false))
+                                    {
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="/product/RemoveCart/@item.DetailId" class="remove"><i class='bx bx-x'></i></a>
+
+                                                <a href="#">
+                                                    <img src="/images/@(item.product.ProductId).jpg" alt="item" style="max-width:120px">
+                                                </a>
+                                            </td>
+
+
+                                            <td class="product-name">
+                                                <a href="products-details.html">@item.product.Name</a>
+                                            </td>
+
+                                            <td class="product-price">
+                                                <span class="unit-amount">@item.Price</span>
+                                            </td>
+
+                                            <td class="product-quantity">
+                                                <div class="input-counter">
+                                                    @*<span class="minus-btn"><i class='bx bx-minus'></i></span>*@
+                                                    <input type="text" value="@item.Count" id="count" />
+                                                    @*<span class="plus-btn"><i class='bx bx-plus'></i></span>*@
+                                                </div>
+                                            </td>
+
+
+                                            <td class="product-subtotal">
+                                                <span class="subtotal-amount">@(item.Count * item.Price)</span>
+                                            </td>
+                                        </tr>
+
+
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="cart-buttons">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 col-sm-7 col-md-7">
+                                    <div class="shopping-coupon-code">
+                                        <input type="text" class="form-control" placeholder="کد تخفیف" name="coupon-code" id="coupon-code">
+                                        <button type="submit">اعمال کد</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 col-md-12">
+                    <div class="cart-totals">
+                        <h3>مجموع سبد خرید</h3>
+
+                        <ul>
+                            <li>زیرمجموعه خرید <span>***</span></li>
+                            <li>کرایه حمل <span>***</span></li>
+                            <li>مجموع خرید <span>***</span></li>
+                            <li>مجموع پرداختی <span>@Model.Sum</span></li>
+
+                        </ul>
+
+                        <a href="/zarrinpal/payment/@Model.OrderId" class="default-btn">
+                            ادامه پرداخت
+                            <span></span>
+                        </a>
+                        <a class="default-btn " href="/product/buytest/@Model.OrderId">خرید تستی</a>
+                    </div>
+                </div>
+            }
+            else if (Model != null && Model.IsFinally == true)
+            {
+
+                <div class="alert alert-info">
+                    مشتری گرامی، سفارش شما در حال پیگیری میباشد. خواهشمند است پس از اطمینان از تکمیل و دریافت محصول خود ،اقدام به خرید دوباره نمایید. از صبر و شکیبایی شما
+                    سپاس گزارم
+                </div>
+                <div class="alert alert-success"><h4>مشاهده فاکتور خرید انجام شده توسط شما</h4></div>
+                <div class="cart-table table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-danger">
+                            <tr>
+                                <th scope="col">محصول</th>
+                                <th scope="col">نام کالا</th>
+                                <th scope="col">قیمت واحد</th>
+                                <th scope="col">تعداد کالا</th>
+                                <th scope="col">مجموع</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.orderDetails.Where(i => i.Isfinally == false))
+                            {
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        @*<a href="/product/RemoveCart/@item.DetailId" class="remove"><i class='bx bx-x'></i></a>*@
+
+                                        <a href="#">
+                                            <img src="/images/@(item.product.ProductId).jpg" alt="item" style="max-width:120px">
+                                        </a>
+                                    </td>
+
+
+                                    <td class="product-name">
+                                        <a href="products-details.html">@item.product.Name</a>
+                                    </td>
+
+                                    <td class="product-price">
+                                        <span class="unit-amount">@item.Price</span>
+                                    </td>
+
+                                    <td class="product-quantity">
+                                        <div class="input-counter">
+                                            @*<span class="minus-btn"><i class='bx bx-minus'></i></span>*@
+                                            <input type="text" value="@item.Count" id="count" />
+                                            @*<span class="plus-btn"><i class='bx bx-plus'></i></span>*@
+                                        </div>
+                                    </td>
+
+
+                                    <td class="product-subtotal">
+                                        <span class="subtotal-amount">@(item.Count * item.Price)</span>
+                                    </td>
+                                </tr>
+
+
+                            }
+
+                        </tbody>
+                    </table>
+                    <div class="alert alert-success"> جمع کل خرید :@Model.Sum تومان</div>
+
+                </div>
+
+            }
+            else if (Model == null)
+            {
+                <div class="alert alert-danger">شما فاکتوری ندارید</div>
+            }
+
+        </div>
+        </div>
+    </section>
+
+
+
+<!-- End Cart Area -->

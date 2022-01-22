@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Product>
+
+@foreach (var item in Model)
+{
+    <div class="owl-item active" style="width: 1469.71px;">
+        <div class="main-slider-item">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="main-slider-content">
+                                    <b>پیشنهاد فروش بزرگ</b>
+                                    <h3><a href="/product/productsinglepage/@item.ProductId/">@item.Name</a></h3>
+                                    <p>قیمت :@item.Price</p>
+
+                                    <div class="slider-btn">
+                                        <a href="/product/productsinglepage/@item.ProductId" class="default-btn">
+                                            <i class="flaticon-shopping-cart"></i>
+                                            جزئیات محصول
+                                            <span></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="main-slider-image">
+                                    <a href="/product/productsinglepage/@item.ProductId"><img src="/images/@(item.ProductId).jpg" alt="image"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
